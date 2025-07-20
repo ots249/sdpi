@@ -1,40 +1,58 @@
 <!DOCTYPE html>
-<html lang="bn">
-<head>
+ <html lang="bn">
+ <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>স্টুডেন্ট তথ্য অনুসন্ধান</title>
   <link rel="manifest" href="manifest.json" />
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+ </head>
+ 
+ <body>
   <div class="bubbles">
-  <span></span><span></span><span></span><span></span><span></span>
+   <span></span><span></span><span></span><span></span><span></span>
   </div>
+  
   <div class="container">
   <h2>স্টুডেন্ট তথ্য অনুসন্ধান</h2>
   <div class="input-area">
-  <input
-  type="text"
-  id="searchInput"
-  autocomplete="off" 
-  placeholder="Name বা Class/BTEB Roll লিখুন"
+  <input 
+   type="text"
+   id="searchInput" 
+   autocomplete="off" 
+   placeholder="Name বা Class/BTEB Roll লিখুন"
   />
-  <ul id="suggestions" class="suggestion-box"></ul>
+  <ul 
+   id="suggestions" 
+   class="suggestion-box"></ul>
   </div>
-  <button id="searchBtn"  class="animated-btn" onclick="searchStudent()"><i class="fas fa-search"></i> সার্চ করুন</button>
+  <button 
+   id="searchBtn" 
+   class="animated-btn" 
+   onclick="searchStudent()"><i class="fas fa-search"></i> সার্চ করুন</button>
   <div id="result" class="result-box"></div>
   <br>
-  <button id="imageExportBtn" class="animated-btn" style="display:none;" onclick="exportResultAsImage()">
+  <button 
+   id="imageExportBtn" 
+   class="animated-btn" 
+   style="display:none;" 
+   onclick="exportResultAsImage()">
   <i class="fas fa-download"></i> ডাউনলোড</button>
   <div id="exportArea" style="display:none;"></div>
   <button id="printBtn" class="animated-btn" style="display:none;" onclick="printResult()">
   <i class="fas fa-print"></i> প্রিন্ট করুন
   </button>
+  </div>
+  
+  <div id="installBanner" style="display:none; position: fixed; top: 10px; left: 10px; right: 10px; margin: auto; background: #fff; border: 1px solid #4caf50; border-radius: 10px; padding: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 9999; max-width: 500px;">
+  <div style="display:flex; align-items:center; justify-content:space-between;">
+  <div>
+  <strong style="color:#1b5e20;">Install Student Info App</strong><br>
+  <small style="color:#555;">Quick access to student data anytime</small>
+  </div>
+  <button id="installBtn" class="animated-btn" style="margin-left: 10px;">Install</button>
+  </div>
   </div>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -51,5 +69,5 @@
   তৈরি করেছেন: <strong>Oahid Towsif Shamol</strong><br />
   2021-2025 &copy; All rights reserved.
   </footer>
-</body>
+ </body>
 </html>

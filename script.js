@@ -1,8 +1,35 @@
 let students = [];
 let printBtn = null;
 let imageExportBtn = null;
+let deferredPrompt = null;
 
-// CSV লোড
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const banner = document.getElementById('installBanner');
+  if (banner) banner.style.display = 'block';
+
+  document.getElementById('installBtn').addEventListener('click', () => {
+    banner.style.display = 'none';
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(choice => {
+      if (choice.outcome === 'accepted') {
+        console.log('✅ App installed');
+      } else {
+        console.log('❌ App install dismissed');
+      }
+      deferredPrompt = null;
+    });
+  });
+});
+
+window.addEventListener('appinstalled', () => {
+  console.log('✅ App successfully installed');
+  const banner = document.getElementById('installBanner');
+  if (banner) banner.style.display = 'none';
+});
+
+// 1.0 CSV লোড
 const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTPdzBd6Kiq0HXrBt5q6SSDdHtfppYQq-1C-AQh7iZFWYHOlC5MIFnXV7JgDV_BJH6kiHkSxK4F4_xJ/pub?output=csv";
 
 fetch(csvUrl)
@@ -28,7 +55,7 @@ fetch(csvUrl)
     resultBox.innerHTML = '<p style="color:red;">CSV ডেটা লোড করা যায়নি।</p>';
   });
 
-// DOM loaded
+// 2.0 DOM loaded
 window.addEventListener("DOMContentLoaded", () => {
   printBtn = document.getElementById("printBtn");
   imageExportBtn = document.getElementById("imageExportBtn");
@@ -44,7 +71,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Suggestion ফাংশন
+// 3.0 Suggestion ফাংশন
 function setupSuggestionListener() {
   const input = document.getElementById("searchInput");
   const suggestionBox = document.getElementById("suggestions");
@@ -63,14 +90,15 @@ function setupSuggestionListener() {
       s["Student Name"]?.toLowerCase().includes(query) ||
       s["Class Roll"]?.toLowerCase().includes(query) ||
       s["BTEB Roll"]?.toLowerCase().includes(query)
+      // filter
     );
 
-    const topThree = matched.slice(0, 3);
+    const topThree = matched.slice(0, 3); // sugestion লিস্টের সংখ্যা
 
     topThree.forEach(student => {
       const li = document.createElement("li");
       const name = student["Student Name"] || "";
-      const roll = student["Class Roll"] || "";
+      const roll = student["Class Roll"] || ""; // suggestion লিস্টের তথ্যা
       const regex = new RegExp(`(${query})`, 'gi'); // matching অংশ খোঁজার জন্য
       
       const highlightedName = name.replace(regex, "<b>$1</b>");
@@ -78,7 +106,7 @@ function setupSuggestionListener() {
       
       li.innerHTML = `${highlightedName} (${highlightedRoll})`;
       li.addEventListener("click", () => {
-        input.value = student["Student Name"];
+        input.value = student["Student Name"]; // সার্চবক্সে যেটা ইনপুট হবে
         suggestionBox.innerHTML = "";
         suggestionBox.style.display = "none";
         searchStudent();
@@ -96,7 +124,7 @@ function setupSuggestionListener() {
   });
 }
 
-// সার্চ ফাংশন
+// 4.0 সার্চ ফাংশন
 function searchStudent() {
   const query = document.getElementById("searchInput").value.trim().toLowerCase();
   const resultBox = document.getElementById("result");
@@ -158,16 +186,16 @@ function searchStudent() {
   }, 300);
 }
 
-// ডাইনলোড
+// 5.0 ছবি ডাইনলোড ফাংশন
 function exportResultAsImage() {
   const resultElement = document.getElementById("result");
 
   if (!resultElement.innerHTML.trim()) {
-    alert("❗ কোনো তথ্য নেই ইমেজে রপ্তানি করার জন্য।");
+    alert("❗ কোনো তথ্য নেই।");
     return;
   }
 
-  // Student name বের করো
+ // 5.1 Student name বের করো
   let studentName = "Student";
   const tempDiv = document.createElement("div");
   tempDiv.innerHTML = resultElement.innerHTML;
@@ -179,7 +207,7 @@ function exportResultAsImage() {
     }
   });
 
-  // Layout তৈরি
+  // 5.2 Layout তৈরি
   const exportArea = document.getElementById("exportArea");
   exportArea.innerHTML = `
     <div id="imageExportLayout" style="font-family:'SolaimanLipi', sans-serif; background:white; color:#111; padding:20px; width:850px; margin:auto; border:2px solid #4caf50; border-radius:12px;">
@@ -200,7 +228,7 @@ function exportResultAsImage() {
 
   exportArea.style.display = "block";
 
-  // ⏱️ Ensure DOM fully rendered before capture
+  // 5.3️ Ensure DOM fully rendered before capture
   setTimeout(() => {
     const layoutDiv = document.getElementById("imageExportLayout");
 
@@ -222,7 +250,7 @@ function exportResultAsImage() {
   }, 500); // wait a bit to render DOM
 }
 
-// প্রিন্ট ফাংশন
+// 6.0 প্রিন্ট ফাংশন
 function printResult() {
   const content = document.getElementById("result").innerHTML;
   const win = window.open("", "", "width=900,height=800");
@@ -240,7 +268,7 @@ function printResult() {
   });
 
   const printDate = new Date().toLocaleString("en-BD");
-
+ // 6.1 প্রিন্ট লেআউট
   win.document.write(`
     <html lang="en">
     <head>
@@ -341,7 +369,7 @@ function printResult() {
     </body>
     </html>
   `);
-
+ // 6.2 ক্লোজ
   win.document.close();
   win.focus();
   setTimeout(() => {
