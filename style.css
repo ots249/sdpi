@@ -9,6 +9,10 @@ body {
   min-height: 100vh;
 }
 
+a {
+  
+}
+
 @keyframes gradientBG {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -323,3 +327,89 @@ button:hover {
   font-size: 15px;
 }
 
+
+.ad-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.ad-card {
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  max-width: 370px;
+}
+
+.ad-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.ad-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sponsor-section {
+  text-align: center;
+  margin: 30px auto;
+  padding: 10px;
+}
+
+.sponsor-label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #00695c;
+  margin-bottom: 10px;
+  background: #e0f2f1;
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.sponsor-ads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.sponsor-ads a img {
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.sponsor-ads a img:hover {
+  transform: scale(1.03);
+}
+
+@media (max-width: 480px) {
+  .sponsor-ads a img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+  margin: 2px 0;
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  max-width: 370px;
+}
