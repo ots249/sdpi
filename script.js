@@ -376,3 +376,45 @@ function printResult() {
     win.print();
   }, 400);
 }
+
+// ad code
+const flipAds = [
+  { link: "https://rkmri.co/AelAS053IMmp/", 
+    img: "https://i.postimg.cc/13NjSg3H/bd042ca0-9e9b-42ef-bd8c-ba268d11aff2.webp" 
+  },
+  { link: "https://10ms.io/ymvTvU", 
+    img: "https://lms10.s3.ap-southeast-1.amazonaws.com/1689604158436.jpeg" 
+  },
+];
+
+let adIndex = 0;
+let isFlipped = false;
+
+function updateFlipAd() {
+  const front = document.getElementById("adFront").querySelector("a");
+  const back = document.getElementById("adBack").querySelector("a");
+  const adFlipper = document.getElementById("adFlipper");
+
+  const nextAd = flipAds[(adIndex + 1) % flipAds.length];
+  const currentAd = flipAds[adIndex];
+
+  if (!isFlipped) {
+    front.href = currentAd.link;
+    front.querySelector("img").src = currentAd.img;
+    back.href = nextAd.link;
+    back.querySelector("img").src = nextAd.img;
+    adFlipper.style.transform = "rotateY(180deg)";
+  } else {
+    front.href = nextAd.link;
+    front.querySelector("img").src = nextAd.img;
+    back.href = currentAd.link;
+    back.querySelector("img").src = currentAd.img;
+    adFlipper.style.transform = "rotateY(0deg)";
+  }
+
+  adIndex = (adIndex + 1) % flipAds.length;
+  isFlipped = !isFlipped;
+}
+
+updateFlipAd();
+setInterval(updateFlipAd, 7000); // প্রতি ৭ সেকেন্ডে flip
