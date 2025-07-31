@@ -377,14 +377,45 @@ function printResult() {
   }, 400);
 }
 
+// popup ad
+function showOfferPopup() {
+  const today = new Date();
+  const expiry = new Date("2025-08-05"); // ✅ অফার শেষ হওয়ার দিন
+  const popup = document.getElementById("offerPopup");
+
+  if (today <= expiry) {
+    // একবার দেখানো হয়েছে কিনা, সেটা লোকালি চেক করি
+    if (!localStorage.getItem("offerPopupClosed")) {
+      popup.style.display = "block";
+    }
+  }
+}
+
+function closeOfferPopup() {
+  document.getElementById("offerPopup").style.display = "none";
+  localStorage.setItem("offerPopupClosed", "true");
+}
+
+window.addEventListener("load", () => {
+  setTimeout(showOfferPopup, 1500); // পেজ লোডের 1.5 সেকেন্ড পর দেখাও
+});
+
+
 // ad code
 const flipAds = [
+  { link: "https://rkmri.co/eMl0NEpAMN3N/",
+    img: "https://i.postimg.cc/yYcJCqb2/MOBILEedb5691d-7a4c-4e4c-a55b-6c8bf7cd4cce.webp"
+  },
   { link: "https://rkmri.co/AelAS053IMmp/", 
     img: "https://i.postimg.cc/13NjSg3H/bd042ca0-9e9b-42ef-bd8c-ba268d11aff2.webp" 
   },
   { link: "https://10ms.io/ymvTvU", 
     img: "https://lms10.s3.ap-southeast-1.amazonaws.com/1689604158436.jpeg" 
   },
+  { link: "https://rkmri.co/T00epEyyeA5N/",
+  img: "https://i.postimg.cc/Qdt4CbZg/88bd72d3-d254-4bdc-970e-a4afdb99a77d.webp"
+  },
+  
 ];
 
 let adIndex = 0;
