@@ -415,6 +415,9 @@ const flipAds = [
   { link: "https://rkmri.co/T00epEyyeA5N/",
   img: "https://i.postimg.cc/Qdt4CbZg/88bd72d3-d254-4bdc-970e-a4afdb99a77d.webp"
   },
+  { link: "https://rkmri.co/MeS300TITeoR/",
+  img: "https://i.postimg.cc/bNQCpKgR/cb8029c9-02f5-469e-9738-ac11073554af.webp",
+  }
   
 ];
 
@@ -448,4 +451,4 @@ function updateFlipAd() {
 }
 
 updateFlipAd();
-setInterval(updateFlipAd, 7000); // প্রতি ৭ সেকেন্ডে flip
+setInterval(updateFlipAd, 6000); // প্রতি 6 সেকেন্ডে flip
