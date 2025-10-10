@@ -1,0 +1,80 @@
+{
+  "short_name": "S DPI",
+  "lang": "en",
+  "dir": "auto",
+  "name": "Search DPI Student",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "display": "standalone",
+  "description": "Search any DPI student",
+  "screenshots": [
+    {
+      "src": "https://pwa.xyz/d7wjvhOCJGBfQX8e6QzP%2FTBGXhzahlYwMkFz.jpg?alt=media&amp;token=e7f9d5d2-594a-423c-a1aa-9c06e6faa508",
+      "type": "image/jpeg",
+      "sizes": "900x1600",
+      "label": "App Icon - Search DPI Student"
+    },
+    {
+      "src": "https://pwa.xyz/d7wjvhOCJGBfQX8e6QzP%2FnRLwRUcQONtOOCK.jpg?alt=media&amp;token=ce24c503-b808-4119-b35b-415d52c8ea1d",
+      "type": "image/jpeg",
+      "sizes": "900x1600",
+      "label": "Click - Open the App"
+    },
+    {
+      "src": "https://pwa.xyz/d7wjvhOCJGBfQX8e6QzP%2FSYPytkoJthBecYu.jpg?alt=media&amp;token=58e36880-33fb-4e3e-bbfe-587b64a348e2",
+      "type": "image/jpeg",
+      "sizes": "900x1600",
+      "label": "Rules - Search DPI student with Name, Sl, BTEB Roll."
+    },
+    {
+      "src": "https://pwa.xyz/d7wjvhOCJGBfQX8e6QzP%2FYpSQVWgRvaeibdS.jpg?alt=media&amp;token=264c535a-58cb-4af6-9ffd-4f305b2abeff",
+      "type": "image/jpeg",
+      "sizes": "900x1600",
+      "label": "Features - You can saved information as PDF or Print"
+    }
+  ],
+  "start_url": "https://search-dpi-student.vercel.app/?launchedfrom=homescreen",
+  "scope": "https://search-dpi-student.vercel.app",
+  "id": "https://search-dpi-student.vercel.app/gD48SbotYw01hL1cgUsz",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "https://pwa.xyz/d7wjvhOCJGBfQX8e6QzP%2FHrwOErgKjxJQkOA.png?alt=media&amp;token=1c256ca2-ee23-4e8c-87f3-fe70aee8dfb9",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://pwa.xyz/d7wjvhOCJGBfQX8e6QzP%2FYAhRzWolNuutDtJ.png?alt=media&amp;token=20e6c920-351f-46a7-84c9-cbac4e9e5f3c",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Developer",
+      "url": "https://search-dpi-student.vercel.app/admin",
+      "icons": [
+        {
+          "src": "https://progressier.com/assets/img/icons/code.png?v=192",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+pwa",
+      "url": "https://search-dpi-student.vercel.app/?launchedfrom=homescreen&amp;pwaprotocolredirect=%s"
+    },
+    {
+      "protocol": "web+searchdpistudent",
+      "url": "https://search-dpi-student.vercel.app/?launchedfrom=homescreen&amp;pwaprotocolredirect=%s"
+    }
+  ],
+  "orientation": "natural",
+  "categories": [
+    "education"
+  ]
+}
