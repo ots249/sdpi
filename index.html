@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DPI Student Information - 2025</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css" />
+ </head>
+ 
+ <body>
+  <div class="bubbles">
+   <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  
+  <div id="popupAd" class="popup-ad">
+  <button id="closePopup" class="ad-close">&times;</button>
+  
+  <!-- পুরো স্ক্রিনই ক্লিকযোগ্য → অ্যাড লিংক -->
+  <a id="adLink" href="https://docs.google.com/forms/d/e/1FAIpQLSfmGdi-95_b45xu9rWJuGFMjLPtZT9X0wCIbqLGCpJR1hjFGA/viewform?usp=header" target="_blank" class="ad-area">
+  <img src="https://i.postimg.cc/hvFPvpLq/Popup-ad.jpg" class="ad-img">
+  </a>
+  </div>
+  
+  <div class="banner" >
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmGdi-95_b45xu9rWJuGFMjLPtZT9X0wCIbqLGCpJR1hjFGA/viewform?usp=header"><img src="https://i.postimg.cc/cLR2YTfc/20251121-094153.png" alt="Roboment Robotics Camp Registration Form"  width="370" height="100" border="0"></a>
+  </div>
+  
+  <div class="container">
+  <h2>DPI Student Information - 2025</h2>
+  <div class="input-area">
+  <input 
+   type="text"
+   id="searchInput" 
+   autocomplete="off" 
+   placeholder="Enter your Board Roll."
+  />
+  <ul 
+  id="suggestions" 
+  class="suggestion-box"></ul>
+  </div>
+  <button 
+   id="searchBtn" 
+   class="animated-btn" 
+   onclick="searchStudent()"><i class="fas fa-search"></i> Find info</button>
+  <div id="result" class="result-box"></div>
+  <br>
+  <div id="exportArea" style="display:none;"></div>
+  <button id="printBtn" class="animated-btn" style="display:none;" onclick="printResult()">
+  <i class="fas fa-print"></i> Print info</button>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+  <br>
+  <footer class="footer">
+  ❤️ with <a href="https://s.id/ots249" target="_blank">Towsif</a> &copy; 249
+  </footer>
+ </body>
+</html>
