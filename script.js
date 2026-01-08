@@ -278,7 +278,8 @@ function printResult() {
     </head>
     <body>
       <div class="title">Information of <b>${studentName}</b></div>
-      <div class="timestamp">Print Date: ${printDate}</div>
+      <div class="timestamp">last updated on 25/10/2025.</div>
+      </br>
       ${content}
       <div class="signature-box">
         <img src="signature.png" alt="Signature" class="signature-img" />
@@ -286,8 +287,8 @@ function printResult() {
         <div>Authorized Signature</div>
       </div>
       <footer>
-        This report was generated automatically.<br/>
-        Developer: <strong>Oahid Towsif Shamol</strong> — &copy; 2021-2025
+        This report was generated automatically on ${printDate}
+        Developer: <strong>Oahid Towsif Shamol</strong> — &copy; 249
       </footer>
     </body>
     </html>
