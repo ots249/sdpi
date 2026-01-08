@@ -1,7 +1,16 @@
 <!DOCTYPE html>
  <html lang="en">
  <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- PWA মেটা ট্যাগ -->
+  <meta name="theme-color" content="#4CAF50">
+  <meta name="description" content="DPI Student Information System">
+  <link rel="manifest" href="/manifest.json">
+  <!-- iOS সাপোর্ট -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DPI Student Information - 2025</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
@@ -56,5 +65,19 @@
   <footer class="footer">
   ❤️ with <a href="https://s.id/ots249" target="_blank">Towsif</a> &copy; 249
   </footer>
+  <script>
+  // সার্ভিস ওয়ার্কার রেজিস্টার
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('ServiceWorker registered:', registration);
+        })
+        .catch(error => {
+          console.log('ServiceWorker registration failed:', error);
+        });
+    });
+  }
+   </script>
  </body>
 </html>
