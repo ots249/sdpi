@@ -287,7 +287,7 @@ function printResult() {
         <div>Authorized Signature</div>
       </div>
       <footer>
-        This report was generated automatically on ${printDate} <br>
+        This report was generated automatically on ${printDate} <br/>
         Developer: <strong>Oahid Towsif Shamol</strong> — &copy; 249
       </footer>
     </body>
