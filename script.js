@@ -3,25 +3,25 @@ let printBtn = null;
 let deferredPrompt = null;
 
 // window.onload = function () {
-    const popup = document.getElementById("popupAd");
-    const closeBtn = document.getElementById("closePopup");
+    //const popup = document.getElementById("popupAd");
+    //const closeBtn = document.getElementById("closePopup");
 
     // শো হবে প্রতিবার পেজ লোডে
-    popup.style.display = "flex";
+    //popup.style.display = "flex";
 
     // Close → শুধু বন্ধ হবে, ক্লিক লিংক খুলবে না
-    closeBtn.onclick = function (e) {
-        e.stopPropagation();
-        popup.style.display = "none";
-    };
+    //closeBtn.onclick = function (e) {
+        //e.stopPropagation();
+        //popup.style.display = "none";
+    //};
 
     // Popup-এর যেকোনো ফাঁকা জায়গায় ক্লিক → Ad link automatically open
-    popup.addEventListener("click", function(e){
-        if(e.target === popup){
-            window.open(document.getElementById("adLink").href, "_blank");
-        }
-    });
-};
+   // popup.addEventListener("click", function(e){
+        //if(e.target === popup){
+            //window.open(document.getElementById("adLink").href, "_blank");
+        //}
+    //});
+//};
 
 // 1.0 CSV লোড
 const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQbsQi30Tfe2b0gtWfzna889a38opX5W7-44XYPRznUA31Frh86XitheJ8RncRZ83hGKL-cRSmh-IwZ/pub?gid=890097051&single=true&output=csv";
