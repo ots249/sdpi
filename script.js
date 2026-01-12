@@ -2,7 +2,7 @@ let students = [];
 let printBtn = null;
 let deferredPrompt = null;
 
-window.onload = function () {
+// window.onload = function () {
     const popup = document.getElementById("popupAd");
     const closeBtn = document.getElementById("closePopup");
 
