@@ -1,86 +1,158 @@
 <!DOCTYPE html>
- <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- PWA মেটা ট্যাগ -->
-  <meta name="theme-color" content="#4CAF50">
-  <meta name="description" content="DPI Student Information System">
-  <link rel="manifest" href="/manifest.json">
-  <!-- iOS সাপোর্ট -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="apple-touch-icon" href="/icon-192x192.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DPI Student Information - 2025</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link rel="stylesheet" href="style.css" />
- </head>
- 
- <body>
-  <div class="bubbles">
-   <span></span><span></span><span></span><span></span><span></span>
-  </div>
-  
-  <!div id="popupAd" class="popup-ad">
-  <!button id="closePopup" class="ad-close">&times;</button>
-  
-  <!-- পুরো স্ক্রিনই ক্লিকযোগ্য → অ্যাড লিংক -->
-  <!a id="adLink" href="https://docs.google.com/forms/d/e/1FAIpQLSfmGdi-95_b45xu9rWJuGFMjLPtZT9X0wCIbqLGCpJR1hjFGA/viewform?usp=header" target="_blank" class="ad-area">
-  <!img src="https://i.postimg.cc/hvFPvpLq/Popup-ad.jpg" class="ad-img">
-  <!/a>
-  <!/div>
-  
-  <div class="banner" >
-  <a href="https://s.id/rrc25"><img src="https://i.postimg.cc/cLR2YTfc/20251121-094153.png" alt="Roboment Robotics Camp Registration Form"  width="370" height="100" border="0"></a>
-  </div>
-  
-  <div class="container">
-  <h2>DPI Student Information - 2025</h2>
-  <div class="input-area">
-  <input 
-   type="text"
-   id="searchInput" 
-   autocomplete="off" 
-   placeholder="Enter your Board Roll."
-  />
-  <ul 
-  id="suggestions" 
-  class="suggestion-box"></ul>
-  </div>
-  <button 
-   id="searchBtn" 
-   class="animated-btn" 
-   onclick="searchStudent()"><i class="fas fa-search"></i> Find info</button>
-  <div id="result" class="result-box"></div>
-  <br>
-  <div id="exportArea" style="display:none;"></div>
-  <button id="printBtn" class="animated-btn" style="display:none;" onclick="printResult()">
-  <i class="fas fa-print"></i> Print info</button>
-  <br>
-  </div>
-  <div class="banner" >
-  <a href="https://s.id/rrc25"><img src="https://i.postimg.cc/cLR2YTfc/20251121-094153.png" alt="Roboment Robotics Camp Registration Form"  width="370" height="100" border="0"></a>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="script.js"></script>
-  <br>
-  <footer class="footer">
-  Made with ❤️ by <a href="https://s.id/ots249" target="_blank">Towsif</a> &copy; 249
-  </footer>
-  <script>
-  // সার্ভিস ওয়ার্কার রেজিস্টার
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(registration => {
-          console.log('ServiceWorker registered:', registration);
-        })
-        .catch(error => {
-          console.log('ServiceWorker registration failed:', error);
-        });
-    });
-  }
-   </script>
- </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPI Student Portal - Find Student Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- manifest লিঙ্ক -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- থিম কালার -->
+    <meta name="theme-color" content="#000000">
+    
+    <!-- iOS সাপোর্ট -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
+    <!-- অ্যাপ ইন্সটলেশন -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- Enhanced Popup Ad -->
+    <div id="enhancedPopup" class="enhanced-popup" style="display: none;">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3><i class="fas fa-gift"></i> Special Opportunity!</h3>
+                <button class="popup-close" onclick="closePopup()">&times;</button>
+            </div>
+            <div class="popup-body">
+                <img src="https://i.postimg.cc/hvFPvpLq/Popup_ad.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                     alt="Robotics Camp" class="popup-image">
+                <h3>Join Robotics Free Course 2026</h3>
+                <p>🎯 Exclusive training for DPI students</p>
+                <p>🤖 Hands-on robotics projects</p>
+                <p>🏆 Certificate & Career guidance</p>
+                <a href="https://s.id/robotics-camp" 
+                   class="popup-cta" target="_blank">
+                   <i class="fas fa-rocket"></i> Register Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <div>
+                <h1>DPI Student Portal</h1>
+                <p class="tagline">Find Student Information - 2025</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number" id="totalStudents">0</div>
+                <div class="stat-label"><code>Total Students</code></div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="searchesToday">0</div>
+                <div class="stat-label"><code>Searches Today</code></div>
+            </div>
+        </div>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-header">
+                <i class="fas fa-search"></i>
+                <h2>Find Student Information</h2>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <div class="search-input-container">
+                        <input type="text" 
+                               id="searchInput" 
+                               class="search-input"
+                               placeholder="Enter Board Roll or Student Name..."
+                               autocomplete="off">
+                        <i class="fas fa-user-graduate search-icon"></i>
+                    </div>
+                    <button id="searchBtn" class="search-btn" onclick="searchStudent()">
+                        <i class="fas fa-search"></i> Find Student
+                    </button>
+                </div>
+                
+                <div class="suggestions-container">
+                    <div id="suggestions" class="suggestions-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Animation -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading student information...</p>
+        </div>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="results-section">
+            <div class="results-header">
+                <h2><i class="fas fa-user-circle"></i> Student Information</h2>
+                <div class="student-count">
+                    <i class="fas fa-users"></i>
+                    <span id="resultCount">1 student found</span>
+                </div>
+            </div>
+            
+            <div id="result" class="result-content"></div>
+        </section>
+
+        <!-- Toast Container -->
+        <div id="toastContainer"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://s.id/ots249" class="footer-link">
+                    <i class="fas fa-info-circle"></i> About
+                </a>
+                <a href="https://m.me/ots249" class="footer-link">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+                <a href="#" class="footer-link">
+                    <i class="fas fa-shield-alt"></i> Privacy
+                </a>
+            </div>
+            <div class="copyright">
+                <p>DPI Student Portal &copy; 249 <br>Developed with <i class="fas fa-heart" style="color:#ff6b6b;"></i> by <b>Towsif</b></p>
+                <p style="font-size:0.8rem; margin-top:5px;">Last Updated: <code>25/10/2025</code></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js""></script>
+    
+</body>
 </html>
