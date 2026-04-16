@@ -42,7 +42,7 @@
     
     <!-- About Page -->
     <url>
-        <loc>https://sdpi.pro.bd/about</loc>
+        <loc>https://sdpi.pro.bd/about.html</loc>
         <lastmod>2025-10-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
@@ -58,7 +58,7 @@
     
     <!-- Privacy Policy Page -->
     <url>
-        <loc>https://sdpi.pro.bd/privacy</loc>
+        <loc>https://sdpi.pro.bd/privacy.html</loc>
         <lastmod>2025-10-25</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
