@@ -1,1 +1,145 @@
+# ============================================
+# ROBOTS.TXT FOR DPI STUDENT PORTAL
+# Domain: https://sdpi.pro.bd
+# Last Updated: 2025-10-25
+# ============================================
+
+# Allow all search engines to crawl
+User-agent: *
+Allow: /
+
+# ============================================
+# SITEMAP LOCATION
+# ============================================
 Sitemap: https://sdpi.pro.bd/sitemap.xml
+
+# ============================================
+# CRAWL DELAY (To reduce server load)
+# ============================================
+# User-agent: Googlebot
+# Crawl-delay: 1
+
+# User-agent: Bingbot
+# Crawl-delay: 1
+
+# ============================================
+# DISALLOW ADMIN/INTERNAL PATHS
+# ============================================
+
+# Block sensitive files (if they exist)
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /backup/
+Disallow: /config/
+Disallow: /logs/
+
+# Block common system files
+Disallow: /*.json$
+Disallow: /*.env$
+Disallow: /*.log$
+Disallow: /*.sql$
+Disallow: /*.bak$
+Disallow: /*.old$
+Disallow: /*.swp$
+
+# Block script and style from being indexed as pages
+Disallow: /script.js
+Disallow: /style.css
+Disallow: /manifest.json
+Disallow: /service-worker.js
+
+# Block empty or parameter-heavy URLs
+Disallow: /*?*
+Disallow: /*&*
+
+# Block debug and test files
+Disallow: /test/
+Disallow: /debug/
+Disallow: /temp/
+Disallow: /tmp/
+
+# ============================================
+# SPECIFIC BOT RULES
+# ============================================
+
+# Google-specific rules
+User-agent: Googlebot
+Allow: /
+Allow: /*.html$
+Allow: /*.htm$
+Allow: /*.php$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.css$
+Allow: /*.js$
+
+# Bing-specific rules
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yahoo-specific rules
+User-agent: Yahoo! Slurp
+Allow: /
+Crawl-delay: 2
+
+# Yandex-specific rules
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
+# Baidu-specific rules (if needed)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# ============================================
+# SEO RECOMMENDATIONS
+# ============================================
+
+# Noindex for empty search queries
+User-agent: *
+Noindex: /?q=
+Noindex: /search?q=
+
+# Block AI scrapers (optional - remove if you want AI training data)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# ============================================
+# HOST (Optional - helps with canonicalization)
+# ============================================
+Host: https://sdpi.pro.bd
+
+# ============================================
+# END OF ROBOTS.TXT
+# ============================================
