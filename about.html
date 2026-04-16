@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - DPI Student Portal</title>
+    <meta name="description" content="Dhaka Polytechnic Institute (DPI) Student Portal - Find student information, results, and academic records. Developed by Oahid Towsif Shamol.">
+    <meta name="keywords" content="DPI, Dhaka Polytechnic, Student Portal, About DPI, Polytechnic Institute">
+    <meta name="author" content="Oahid Towsif Shamol">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional styles for about page */
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .about-hero {
+            background: linear-gradient(135deg, #4a6fa5 0%, #166088 100%);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .about-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .about-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .about-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-section h2 {
+            color: #4a6fa5;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        
+        .about-section p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .mission-card, .vision-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .mission-card:hover, .vision-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .mission-card i, .vision-card i {
+            font-size: 2.5rem;
+            color: #17b890;
+            margin-bottom: 15px;
+        }
+        
+        .mission-card h3, .vision-card h3 {
+            color: #4a6fa5;
+            margin-bottom: 10px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .team-member {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-member i {
+            font-size: 3rem;
+            color: #4a6fa5;
+            margin-bottom: 10px;
+        }
+        
+        .team-member h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .team-member p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #4a6fa5 0%, #166088 100%);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #4a6fa5;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-home:hover {
+            background: #166088;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 1.8rem;
+            }
+            .about-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <div>
+                <h1>DPI Student Portal</h1>
+                <p class="tagline">Find Student Information - 2025</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="about-container">
+        <div class="about-hero">
+            <i class="fas fa-info-circle" style="font-size: 3rem; margin-bottom: 20px;"></i>
+            <h1>About DPI Student Portal</h1>
+            <p>Your trusted source for student information at Dhaka Polytechnic Institute</p>
+        </div>
+
+        <div class="about-section">
+            <h2><i class="fas fa-university"></i> About Dhaka Polytechnic Institute</h2>
+            <p>Dhaka Polytechnic Institute (DPI) is one of the largest and most prestigious technical educational institutions in Bangladesh. Established in 1955, DPI has been producing skilled engineers and technicians who contribute significantly to the nation's development.</p>
+            <p>The institute offers Diploma in Engineering programs across various departments including Computer Science, Electrical, Mechanical, Civil, Electronics, and more. With state-of-the-art laboratories and experienced faculty members, DPI maintains high standards of technical education.</p>
+        </div>
+
+        <div class="mission-vision">
+            <div class="mission-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Our Mission</h3>
+                <p>To provide accurate, up-to-date student information and academic records through a user-friendly digital platform, ensuring transparency and accessibility for all students and stakeholders.</p>
+            </div>
+            <div class="vision-card">
+                <i class="fas fa-eye"></i>
+                <h3>Our Vision</h3>
+                <p>To become the premier digital hub for student information management in Bangladesh's technical education sector, empowering students with instant access to their academic data.</p>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2><i class="fas fa-globe"></i> About This Portal</h2>
+            <p>The DPI Student Portal is a digital platform designed to help students, teachers, and parents easily find student information including board roll numbers, academic results, personal details, and other important records.</p>
+            <p>Built with modern web technologies, this portal provides a fast, secure, and user-friendly interface to search for student information by roll number or name. The data is regularly updated from official sources to ensure accuracy.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-number">1955</div>
+                <div class="stat-label">Established</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Departments</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">5000+</div>
+                <div class="stat-label">Students</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Accessible</div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2><i class="fas fa-users"></i> Meet The Developer</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <i class="fas fa-user-circle"></i>
+                    <h4>Oahid Towsif Shamol</h4>
+                    <p>Full Stack Developer</p>
+                    <p style="font-size: 0.8rem; color: #888;">DPI Student Portal Creator</p>
+                </div>
+                <div class="team-member">
+                    <i class="fas fa-code"></i>
+                    <h4>Technical Team</h4>
+                    <p>Web Development</p>
+                    <p style="font-size: 0.8rem; color: #888;">System Maintenance</p>
+                </div>
+                <div class="team-member">
+                    <i class="fas fa-database"></i>
+                    <h4>Data Management</h4>
+                    <p>DPI Administration</p>
+                    <p style="font-size: 0.8rem; color: #888;">Official Data Partners</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2><i class="fas fa-envelope"></i> Contact Information</h2>
+            <p><strong><i class="fas fa-map-marker-alt"></i> Address:</strong> Dhaka Polytechnic Institute, Tejgaon, Dhaka-1208, Bangladesh</p>
+            <p><strong><i class="fas fa-phone"></i> Phone:</strong> +880-2-XXXXXXX</p>
+            <p><strong><i class="fas fa-envelope"></i> Email:</strong> info@dpi.edu.bd</p>
+            <p><strong><i class="fab fa-facebook"></i> Facebook:</strong> <a href="https://facebook.com/dpi.official" target="_blank" style="color: #4a6fa5;">facebook.com/dpi.official</a></p>
+            <p><strong><i class="fab fa-linkedin"></i> LinkedIn:</strong> <a href="https://linkedin.com/school/dpi" target="_blank" style="color: #4a6fa5;">linkedin.com/school/dpi</a></p>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="/" class="back-home">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/about.html" class="footer-link"><i class="fas fa-info-circle"></i> About</a>
+                <a href="/privacy.html" class="footer-link"><i class="fas fa-shield-alt"></i> Privacy</a>
+                <a href="https://m.me/ots249" class="footer-link"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            <div class="copyright">
+                <p>DPI Student Portal &copy; 249 <br>Developed with <i class="fas fa-heart" style="color:#ff6b6b;"></i> by <b>Towsif</b></p>
+                <p style="font-size:0.8rem; margin-top:5px;">Last Updated: <code>25/10/2025</code></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js').catch(err => {
+                    console.log('Service Worker registration failed:', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
