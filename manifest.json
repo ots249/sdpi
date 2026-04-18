@@ -1,10 +1,11 @@
 {
-  "name": "DPI Student Information - 2025",
-  "short_name": "S DPI",
+  "name": "DPI Student Information Portal",
+  "short_name": "DPI Portal",
+  "description": "Unofficial student information portal for Dhaka Polytechnic Institute",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
+  "theme_color": "#4a6fa5",
   "icons": [
     {
       "src": "icon-72x72.png",
