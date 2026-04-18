@@ -1,47 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
+    
     <!-- Primary Meta Tags -->
-<title>DPI Student Portal - Find Student Information | Dhaka Polytechnic Institute</title>
-<meta name="title" content="DPI Student Portal - Find Student Information | Dhaka Polytechnic Institute">
-<meta name="description" content="Official DPI Student Portal. Search student information, board roll, results, and academic records of Dhaka Polytechnic Institute students. Fast & secure.">
-<meta name="keywords" content="DPI, Dhaka Polytechnic Institute, Student Portal, DPI Student Info, Board Roll, Diploma Results, Polytechnic Student, DPI Result">
-<meta name="author" content="Oahid Towsif Shamol">
-<meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
-<meta name="language" content="Bengali, English">
-<meta name="revisit-after" content="1 days">
+    <title>DPI Student Portal - Search Student Information | Dhaka Polytechnic Institute</title>
+    <meta name="title" content="DPI Student Portal - Search Student Information | Dhaka Polytechnic Institute">
+    <meta name="description" content="Unofficial student information portal for Dhaka Polytechnic Institute (DPI). Search board roll numbers, academic results, and student records easily and quickly.">
+    <meta name="keywords" content="DPI, Dhaka Polytechnic Institute, Student Portal, DPI Student Info, Board Roll, Diploma Results, Polytechnic Student, DPI Result">
+    <meta name="author" content="Oahid Towsif Shamol">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+    <meta name="language" content="Bengali, English">
+    <meta name="revisit-after" content="1 days">
+    
+    <!-- Disclaimer for unofficial site -->
+    <meta name="rating" content="General">
+    <meta name="distribution" content="Global">
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://sdpi.pro.bd/">
-<meta property="og:title" content="DPI Student Portal - Find Student Information">
-<meta property="og:description" content="Official DPI Student Portal. Search student information, board roll, results, and academic records.">
-<meta property="og:image" content="https://sdpi.pro.bd/og-image.jpg">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sdpi.pro.bd/">
+    <meta property="og:title" content="DPI Student Portal - Search Student Information">
+    <meta property="og:description" content="Unofficial student information portal for Dhaka Polytechnic Institute. Search board roll, results, and academic records.">
+    <meta property="og:image" content="https://sdpi.pro.bd/og-image.jpg">
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://sdpi.pro.bd/">
-<meta property="twitter:title" content="DPI Student Portal - Find Student Information">
-<meta property="twitter:description" content="Official DPI Student Portal. Search student information, board roll, results, and academic records.">
-<meta property="twitter:image" content="https://sdpi.pro.bd/og-image.jpg">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sdpi.pro.bd/">
+    <meta property="twitter:title" content="DPI Student Portal - Search Student Information">
+    <meta property="twitter:description" content="Unofficial student information portal for Dhaka Polytechnic Institute. Search board roll, results, and academic records.">
+    <meta property="twitter:image" content="https://sdpi.pro.bd/og-image.jpg">
 
-<!-- Canonical URL -->
-<link rel="canonical" href="https://sdpi.pro.bd/">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sdpi.pro.bd/">
+    
+    <!-- JSON-LD Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "DPI Student Portal",
+      "url": "https://sdpi.pro.bd",
+      "description": "Search student information of Dhaka Polytechnic Institute",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://sdpi.pro.bd/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DPI Student Portal - Find Student Information | Dhaka Polytechnic Institute</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- manifest লিঙ্ক -->
     <link rel="manifest" href="manifest.json">
     
     <!-- থিম কালার -->
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#4a6fa5">
     
     <!-- iOS সাপোর্ট -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
     
     <!-- অ্যাপ ইন্সটলেশন -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -57,6 +79,12 @@
         </div>
     </div>
 
+    <!-- Disclaimer Banner -->
+    <div class="disclaimer-banner">
+        <i class="fas fa-info-circle"></i>
+        <span>⚠️ This is an <strong>unofficial</strong> student service portal. Not affiliated with DPI or BTEB. For official information, please visit <a href="https://dpi.gov.bd" target="_blank">dpi.gov.bd</a>.</span>
+    </div>
+
     <!-- Enhanced Popup Ad -->
     <div id="enhancedPopup" class="enhanced-popup" style="display: none;">
         <div class="popup-content">
@@ -65,7 +93,7 @@
                 <button class="popup-close" onclick="closePopup()">&times;</button>
             </div>
             <div class="popup-body">
-                <img src="https://i.postimg.cc/523CTWMP/Popup-ad.webp?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                <img src="https://i.postimg.cc/523CTWMP/Popup-ad.webp" 
                      alt="Robotics Camp" class="popup-image">
                 <h3>Join Robotics Free Course 2026</h3>
                 <p>🎯 Exclusive training for DPI students</p>
@@ -85,7 +113,7 @@
             <i class="fas fa-graduation-cap"></i>
             <div>
                 <h1>DPI Student Portal</h1>
-                <p class="tagline">Find Student Information - 2025</p>
+                <p class="tagline">Student Information Search - 2026</p>
             </div>
         </div>
     </header>
@@ -149,6 +177,19 @@
             </div>
             
             <div id="result" class="result-content"></div>
+            
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button id="printBtn" class="action-btn print-btn" onclick="printResult()">
+                    <i class="fas fa-print"></i> Print
+                </button>
+                <button id="exportBtn" class="action-btn export-btn" onclick="exportAsImage()">
+                    <i class="fas fa-image"></i> Export Image
+                </button>
+                <button id="shareBtn" class="action-btn share-btn" onclick="shareResult()">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+            </div>
         </section>
 
         <!-- Toast Container -->
@@ -162,7 +203,7 @@
                 <a href="about.html" class="footer-link">
                     <i class="fas fa-info-circle"></i> About
                 </a>
-                <a href="mailto:towsif@civil.engr.bd" class="footer-link">
+                <a href="https://m.me/ots249" class="footer-link" target="_blank">
                     <i class="fas fa-envelope"></i> Contact
                 </a>
                 <a href="privacy.html" class="footer-link">
@@ -170,15 +211,14 @@
                 </a>
             </div>
             <div class="copyright">
-                <p>DPI Student Portal &copy; 249 <br>Developed with <i class="fas fa-heart" style="color:#ff6b6b;"></i> by <b>Towsif</b></p>
-                <p style="font-size:0.8rem; margin-top:5px;">Last Updated: <code>25/10/2025</code></p>
+                <p>DPI Student Portal (Unofficial) &copy; 2026<br>Developed with <i class="fas fa-heart" style="color:#ff6b6b;"></i> by <b>Oahid Towsif Shamol</b></p>
+                <p style="font-size:0.8rem; margin-top:5px;">Last Updated: <code>18/04/2026</code></p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="script.js""></script>
-    
+    <script src="script.js"></script>
 </body>
 </html>
