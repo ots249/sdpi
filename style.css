@@ -863,3 +863,181 @@ body {
         transform: scale(0.8);
     }
 }
+
+/* ============================================
+   ADD THESE STYLES AT THE END OF style.css
+   ============================================ */
+
+/* Disclaimer Banner */
+.disclaimer-banner {
+    background: #fff3cd;
+    border-bottom: 2px solid #ffc107;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #856404;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.disclaimer-banner a {
+    color: #4a6fa5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.disclaimer-banner a:hover {
+    text-decoration: underline;
+}
+
+/* Share Button Style */
+.share-btn {
+    background: #1da1f2;
+    color: white;
+    border: none;
+}
+
+.share-btn:hover {
+    background: #0d8bd9;
+    transform: translateY(-2px);
+}
+
+/* Improved Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.action-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.print-btn {
+    background: linear-gradient(135deg, #4a6fa5 0%, #166088 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(74, 111, 165, 0.3);
+}
+
+.export-btn {
+    background: white;
+    color: #4a6fa5;
+    border: 2px solid #4a6fa5;
+}
+
+.export-btn:hover {
+    background: #4a6fa5;
+    color: white;
+}
+
+/* Print Styles */
+@media print {
+    .header, .footer, .search-section, .stats-bar, .action-buttons, 
+    .disclaimer-banner, .enhanced-popup, .animated-bg, .suggestions-container {
+        display: none !important;
+    }
+    
+    .results-section {
+        display: block !important;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .student-card {
+        page-break-inside: avoid;
+        border: 1px solid #ddd;
+        box-shadow: none;
+    }
+    
+    body {
+        background: white;
+    }
+}
+
+/* Improved Toast */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10000;
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.toast.success {
+    border-left: 4px solid #28a745;
+}
+
+.toast.error {
+    border-left: 4px solid #dc3545;
+}
+
+.toast.warning {
+    border-left: 4px solid #ffc107;
+}
+
+.toast-icon {
+    font-size: 1.5rem;
+}
+
+.toast.success .toast-icon {
+    color: #28a745;
+}
+
+.toast.error .toast-icon {
+    color: #dc3545;
+}
+
+/* Mobile Responsive Improvements */
+@media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        justify-content: center;
+    }
+    
+    .disclaimer-banner {
+        font-size: 0.7rem;
+        padding: 8px 10px;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .tagline {
+        font-size: 0.9rem;
+    }
+        }
