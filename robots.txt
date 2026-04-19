@@ -1,64 +1,15 @@
 # ============================================
 # ROBOTS.TXT FOR DPI STUDENT PORTAL
 # Domain: https://sdpi.pro.bd
-# Last Updated: 2026-04-18
+# Last Updated: 2026-04-19
 # ============================================
 
-# Allow all search engines to crawl
+# Allow all search engines to crawl everything
 User-agent: *
 Allow: /
 
-# ============================================
-# SITEMAP LOCATION
-# ============================================
+# Sitemap location
 Sitemap: https://sdpi.pro.bd/sitemap.xml
-
-# ============================================
-# DISALLOW ONLY SENSITIVE PATHS
-# ============================================
-
-# Block admin/internal paths (if they exist)
-Disallow: /admin/
-Disallow: /private/
-Disallow: /temp/
-Disallow: /backup/
-Disallow: /config/
-Disallow: /logs/
-
-# Block parameter-heavy URLs to avoid duplicate content
-Disallow: /*?*
-Disallow: /*&*
-
-# Block debug and test files
-Disallow: /test/
-Disallow: /debug/
-Disallow: /tmp/
-
-# ============================================
-# CRAWL DELAY (To reduce server load)
-# ============================================
-User-agent: Googlebot
-Crawl-delay: 0.5
-
-User-agent: Bingbot
-Crawl-delay: 1
-
-# ============================================
-# BLOCK AI SCRAPERS (Optional)
-# ============================================
-User-agent: GPTBot
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-# ============================================
-# HOST (helps with canonicalization)
-# ============================================
-Host: https://sdpi.pro.bd
 
 # ============================================
 # END OF ROBOTS.TXT
