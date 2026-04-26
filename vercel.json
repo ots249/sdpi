@@ -8,6 +8,9 @@
       "source": "/privacy",
       "destination": "/privacy.html"
     },
+    { "source": "/app", 
+      "destination": "/app.html" 
+    },
     {
       "source": "/(.*)",
       "destination": "/$1.html"
