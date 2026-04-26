@@ -29,5 +29,12 @@
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
+    <!-- App Page -->
+<url>
+    <loc>https://sdpi.pro.bd/app</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+</url>
 
 </urlset>
