@@ -75,7 +75,7 @@ function showToast(message, type = 'success') {
 
 // Load Student Data
 function loadStudentData() {
-    const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQbsQi30Tfe2b0gtWfzna889a38opX5W7-44XYPRznUA31Frh86XitheJ8RncRZ83hGKL-cRSmh-IwZ/pub?gid=890097051&single=true&output=csv";
+    const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTtffCk5D7_H1tK1gMneMjgjA5umw_a4Ts8-4ICKXhcaRe8EX0mjL6tbb_amRs0LmXowkrTBnY3OpOW/pub?gid=2080297110&single=true&output=csv";
     
     showLoading(true);
     console.log("Loading CSV data from:", csvUrl);
