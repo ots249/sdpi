@@ -1,14 +1,66 @@
 /* =========================================
-   SDPI Widget System
-   Version: 1.0
+   SDPI Widget System v2.0
+   Enhanced & Optimized
    ========================================= */
 
 (function () {
     "use strict";
 
-    /* ---------- Inject CSS ---------- */
-    const style = document.createElement("style");
+    /* ---------- Configuration ---------- */
+    const CONFIG = {
+        scrollProgressHeight: '3px',
+        scrollProgressColor: 'linear-gradient(90deg, #2563eb, #7c3aed, #2563eb)',
+        toastDuration: 2800,
+        backToTopThreshold: 400,
+        clockUpdateInterval: 1000,
+        darkModeClass: 'sdpi-dark'
+    };
 
+    /* ---------- Utility Functions ---------- */
+    const utils = {
+        debounce(fn, delay = 100) {
+            let timer;
+            return function (...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => fn.apply(this, args), delay);
+            };
+        },
+
+        throttle(fn, limit = 100) {
+            let inThrottle;
+            return function (...args) {
+                if (!inThrottle) {
+                    fn.apply(this, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            };
+        },
+
+        getScrollPercent() {
+            const scrollTop = window.scrollY;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            return height > 0 ? (scrollTop / height) * 100 : 0;
+        },
+
+        formatTime(date) {
+            return {
+                time: date.toLocaleTimeString('en-BD', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                }),
+                date: date.toLocaleDateString('en-BD', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                })
+            };
+        }
+    };
+
+    /* ---------- Inject CSS ---------- */
+    const style = document.createElement('style');
     style.textContent = `
         /* Scroll Progress */
         #sdpi-scroll-progress {
@@ -16,112 +68,164 @@
             top: 0;
             left: 0;
             width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            height: ${CONFIG.scrollProgressHeight};
+            background: ${CONFIG.scrollProgressColor};
             z-index: 99999;
-            transition: width .1s linear;
+            transition: width 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
         }
 
         /* Floating Buttons */
         .sdpi-widget-container {
             position: fixed;
-            right: 18px;
-            bottom: 18px;
+            right: 20px;
+            bottom: 20px;
             z-index: 9998;
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
-            gap: 10px;
+            align-items: center;
+            gap: 12px;
         }
 
         .sdpi-widget-btn {
-            width: 44px;
-            height: 44px;
-            border: 0;
+            width: 48px;
+            height: 48px;
+            border: none;
             border-radius: 50%;
             background: #ffffff;
-            color: #222;
-            box-shadow: 0 4px 18px rgba(0,0,0,.15);
+            color: #1f2937;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
-            transition: .25s ease;
+            font-size: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            touch-action: manipulation;
         }
 
         .sdpi-widget-btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .sdpi-widget-btn:active {
+            transform: scale(0.95);
+        }
+
+        .sdpi-widget-btn .tooltip {
+            position: absolute;
+            right: calc(100% + 12px);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .sdpi-widget-btn:hover .tooltip {
+            opacity: 1;
         }
 
         /* Clock */
         #sdpi-clock {
             position: fixed;
-            top: 15px;
-            right: 15px;
+            top: 20px;
+            right: 20px;
             z-index: 9997;
-            background: rgba(255,255,255,.9);
-            color: #222;
-            padding: 8px 13px;
-            border-radius: 12px;
-            box-shadow: 0 3px 15px rgba(0,0,0,.12);
-            font-size: 13px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #1f2937;
+            padding: 10px 16px;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            font-size: 14px;
             font-weight: 600;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            line-height: 1.4;
+            text-align: center;
         }
 
         /* Online Status */
         #sdpi-online-status {
             position: fixed;
-            left: 15px;
-            bottom: 15px;
+            left: 20px;
+            bottom: 20px;
             z-index: 9997;
-            padding: 7px 11px;
-            border-radius: 20px;
+            padding: 8px 14px;
+            border-radius: 24px;
             background: #e8f5e9;
             color: #16803c;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
-            box-shadow: 0 3px 12px rgba(0,0,0,.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(22, 128, 60, 0.1);
         }
 
         #sdpi-online-status.offline {
             background: #ffebee;
             color: #d32f2f;
+            border-color: rgba(211, 47, 47, 0.1);
         }
 
         /* Toast */
         #sdpi-toast-container {
             position: fixed;
-            top: 65px;
+            top: 80px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 100000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            pointer-events: none;
+            width: 100%;
+            max-width: 500px;
         }
 
         .sdpi-toast {
-            min-width: 220px;
-            max-width: 90vw;
-            padding: 12px 17px;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            background: #222;
+            min-width: 200px;
+            max-width: 90%;
+            padding: 14px 24px;
+            margin-bottom: 8px;
+            border-radius: 14px;
+            background: rgba(31, 41, 55, 0.95);
             color: #fff;
             text-align: center;
-            font-size: 13px;
-            box-shadow: 0 5px 25px rgba(0,0,0,.2);
-            animation: sdpiToastIn .3s ease;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            animation: sdpiToastIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: auto;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         @keyframes sdpiToastIn {
             from {
                 opacity: 0;
-                transform: translateY(-15px);
+                transform: translateY(-20px) scale(0.95);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
+        }
+
+        .sdpi-toast.success {
+            background: rgba(22, 128, 60, 0.95);
+        }
+
+        .sdpi-toast.error {
+            background: rgba(211, 47, 47, 0.95);
         }
 
         /* Dark Mode */
@@ -133,302 +237,286 @@
         body.sdpi-dark #sdpi-clock,
         body.sdpi-dark .sdpi-widget-btn {
             background: #1f2937;
-            color: #fff;
+            color: #f3f4f6;
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body.sdpi-dark .sdpi-widget-btn:hover {
+            background: #374151;
+        }
+
+        body.sdpi-dark #sdpi-online-status {
+            background: #1a2a1a;
+            color: #4caf50;
+            border-color: rgba(76, 175, 80, 0.2);
+        }
+
+        body.sdpi-dark #sdpi-online-status.offline {
+            background: #2a1a1a;
+            color: #ef5350;
+            border-color: rgba(239, 83, 80, 0.2);
         }
 
         body.sdpi-dark input,
         body.sdpi-dark textarea,
         body.sdpi-dark select {
             background: #1f2937;
-            color: #fff;
+            color: #f3f4f6;
             border-color: #374151;
         }
 
         /* Back To Top */
         #sdpi-back-top {
-            display: none;
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         #sdpi-back-top.show {
-            display: flex;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
         }
 
+        /* Responsive */
         @media (max-width: 600px) {
             #sdpi-clock {
-                top: 10px;
-                right: 10px;
-                font-size: 11px;
+                top: 12px;
+                right: 12px;
+                font-size: 12px;
+                padding: 8px 12px;
             }
 
             .sdpi-widget-container {
                 right: 12px;
                 bottom: 12px;
+                gap: 10px;
             }
 
             .sdpi-widget-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+
+            #sdpi-online-status {
+                left: 12px;
+                bottom: 12px;
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+
+            #sdpi-toast-container {
+                top: 60px;
+            }
+
+            .sdpi-toast {
+                padding: 12px 20px;
+                font-size: 13px;
             }
         }
     `;
 
     document.head.appendChild(style);
 
-
     /* ---------- Scroll Progress ---------- */
-
-    const progress = document.createElement("div");
-    progress.id = "sdpi-scroll-progress";
+    const progress = document.createElement('div');
+    progress.id = 'sdpi-scroll-progress';
     document.body.appendChild(progress);
 
-    function updateProgress() {
-        const scrollTop = window.scrollY;
-        const height =
-            document.documentElement.scrollHeight -
-            document.documentElement.clientHeight;
+    const updateProgress = utils.throttle(() => {
+        progress.style.width = utils.getScrollPercent() + '%';
+    }, 20);
 
-        const percent = height > 0
-            ? (scrollTop / height) * 100
-            : 0;
-
-        progress.style.width = percent + "%";
-    }
-
-    window.addEventListener("scroll", updateProgress);
-
+    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('resize', updateProgress);
 
     /* ---------- Clock ---------- */
-
-    const clock = document.createElement("div");
-    clock.id = "sdpi-clock";
-
+    const clock = document.createElement('div');
+    clock.id = 'sdpi-clock';
     document.body.appendChild(clock);
 
     function updateClock() {
-        const now = new Date();
-
-        const time = now.toLocaleTimeString("en-BD", {
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit"
-        });
-
-        const date = now.toLocaleDateString("en-BD", {
-            day: "numeric",
-            month: "short",
-            year: "numeric"
-        });
-
+        const { time, date } = utils.formatTime(new Date());
         clock.innerHTML = `🕒 ${time}<br>📅 ${date}`;
     }
 
     updateClock();
-    setInterval(updateClock, 1000);
-
+    setInterval(updateClock, CONFIG.clockUpdateInterval);
 
     /* ---------- Online Status ---------- */
-
-    const status = document.createElement("div");
-    status.id = "sdpi-online-status";
-
+    const status = document.createElement('div');
+    status.id = 'sdpi-online-status';
     document.body.appendChild(status);
 
     function updateOnlineStatus() {
-        if (navigator.onLine) {
-            status.textContent = "● Online";
-            status.classList.remove("offline");
-        } else {
-            status.textContent = "● Offline";
-            status.classList.add("offline");
-        }
+        const isOnline = navigator.onLine;
+        status.textContent = isOnline ? '● Online' : '● Offline';
+        status.classList.toggle('offline', !isOnline);
     }
 
     updateOnlineStatus();
 
-    window.addEventListener("online", updateOnlineStatus);
-    window.addEventListener("offline", updateOnlineStatus);
-
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
 
     /* ---------- Floating Buttons ---------- */
+    const container = document.createElement('div');
+    container.className = 'sdpi-widget-container';
 
-    const container = document.createElement("div");
-    container.className = "sdpi-widget-container";
+    // Helper to create buttons with tooltips
+    function createButton(html, tooltip, id = '') {
+        const btn = document.createElement('button');
+        btn.className = 'sdpi-widget-btn';
+        btn.innerHTML = html;
+        if (id) btn.id = id;
 
-    /* Dark Mode */
+        const tip = document.createElement('span');
+        tip.className = 'tooltip';
+        tip.textContent = tooltip;
+        btn.appendChild(tip);
 
-    const darkBtn = document.createElement("button");
-    darkBtn.className = "sdpi-widget-btn";
-    darkBtn.innerHTML = "🌙";
-    darkBtn.title = "Dark Mode";
+        return btn;
+    }
 
+    // Dark Mode Button
+    const darkBtn = createButton('🌙', 'Toggle Theme');
     container.appendChild(darkBtn);
 
-    /* Share */
-
-    const shareBtn = document.createElement("button");
-    shareBtn.className = "sdpi-widget-btn";
-    shareBtn.innerHTML = "🔗";
-    shareBtn.title = "Share";
-
+    // Share Button
+    const shareBtn = createButton('🔗', 'Share Page');
     container.appendChild(shareBtn);
 
-    /* Back To Top */
-
-    const topBtn = document.createElement("button");
-    topBtn.className = "sdpi-widget-btn";
-    topBtn.id = "sdpi-back-top";
-    topBtn.innerHTML = "↑";
-    topBtn.title = "Back to Top";
-
+    // Back to Top Button
+    const topBtn = createButton('↑', 'Back to Top', 'sdpi-back-top');
     container.appendChild(topBtn);
 
     document.body.appendChild(container);
 
-
     /* ---------- Dark Mode Logic ---------- */
-
-    const savedTheme = localStorage.getItem("sdpi-theme");
-
-    if (savedTheme === "dark") {
-        document.body.classList.add("sdpi-dark");
-        darkBtn.innerHTML = "☀️";
+    const savedTheme = localStorage.getItem('sdpi-theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add(CONFIG.darkModeClass);
+        darkBtn.innerHTML = '☀️';
     }
 
-    darkBtn.addEventListener("click", function () {
-
-        document.body.classList.toggle("sdpi-dark");
-
-        const isDark =
-            document.body.classList.contains("sdpi-dark");
-
-        localStorage.setItem(
-            "sdpi-theme",
-            isDark ? "dark" : "light"
-        );
-
-        darkBtn.innerHTML = isDark ? "☀️" : "🌙";
-
-        showToast(
-            isDark
-                ? "Dark mode enabled"
-                : "Light mode enabled"
-        );
+    darkBtn.addEventListener('click', function () {
+        document.body.classList.toggle(CONFIG.darkModeClass);
+        const isDark = document.body.classList.contains(CONFIG.darkModeClass);
+        localStorage.setItem('sdpi-theme', isDark ? 'dark' : 'light');
+        darkBtn.innerHTML = isDark ? '☀️' : '🌙';
+        showToast(isDark ? '🌙 Dark mode enabled' : '☀️ Light mode enabled', 2000);
     });
-
 
     /* ---------- Share ---------- */
-
-    shareBtn.addEventListener("click", async function () {
-
-        const shareData = {
-            title: document.title,
-            text: "Check this website:",
-            url: window.location.href
-        };
-
+    shareBtn.addEventListener('click', async function () {
         try {
-
             if (navigator.share) {
-
-                await navigator.share(shareData);
-
+                await navigator.share({
+                    title: document.title,
+                    text: 'Check out this page!',
+                    url: window.location.href
+                });
             } else {
-
-                await navigator.clipboard.writeText(
-                    window.location.href
-                );
-
-                showToast("Link copied!");
+                await navigator.clipboard.writeText(window.location.href);
+                showToast('✅ Link copied to clipboard!');
             }
-
         } catch (error) {
-            console.log("Share cancelled");
+            if (error.name !== 'AbortError') {
+                console.error('Share error:', error);
+                showToast('❌ Could not share', 2000);
+            }
         }
     });
-
 
     /* ---------- Back To Top ---------- */
+    const handleScroll = utils.throttle(() => {
+        topBtn.classList.toggle('show', window.scrollY > CONFIG.backToTopThreshold);
+    }, 100);
 
-    window.addEventListener("scroll", function () {
+    window.addEventListener('scroll', handleScroll);
 
-        if (window.scrollY > 400) {
-            topBtn.classList.add("show");
-        } else {
-            topBtn.classList.remove("show");
-        }
-
-    });
-
-    topBtn.addEventListener("click", function () {
-
+    topBtn.addEventListener('click', function () {
         window.scrollTo({
             top: 0,
-            behavior: "smooth"
+            behavior: 'smooth'
         });
-
     });
 
-
     /* ---------- Toast System ---------- */
-
-    const toastContainer = document.createElement("div");
-
-    toastContainer.id = "sdpi-toast-container";
-
+    const toastContainer = document.createElement('div');
+    toastContainer.id = 'sdpi-toast-container';
     document.body.appendChild(toastContainer);
 
-
-    function showToast(message, duration = 2500) {
-
-        const toast = document.createElement("div");
-
-        toast.className = "sdpi-toast";
-
+    function showToast(message, duration = CONFIG.toastDuration, type = '') {
+        const toast = document.createElement('div');
+        toast.className = `sdpi-toast ${type}`;
         toast.textContent = message;
-
         toastContainer.appendChild(toast);
 
-        setTimeout(() => {
+        // Handle overlapping toasts
+        const existingToasts = toastContainer.children;
+        if (existingToasts.length > 3) {
+            const oldestToast = existingToasts[0];
+            oldestToast.style.opacity = '0';
+            setTimeout(() => oldestToast.remove(), 300);
+        }
 
-            toast.style.opacity = "0";
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(-10px) scale(0.95)';
+            toast.style.transition = 'all 0.3s ease';
 
             setTimeout(() => {
                 toast.remove();
             }, 300);
-
         }, duration);
     }
 
-
     /* Make Toast globally available */
-
     window.SDPIToast = showToast;
 
-
     /* ---------- Copy Helper ---------- */
-
     window.SDPICopy = async function (text) {
-
         try {
-
             await navigator.clipboard.writeText(text);
-
-            showToast("Copied successfully!");
-
+            showToast('✅ Copied successfully!', 2000, 'success');
+            return true;
         } catch (error) {
-
-            showToast("Copy failed!");
-
+            console.error('Copy failed:', error);
+            showToast('❌ Copy failed!', 2000, 'error');
+            return false;
         }
     };
 
+    /* ---------- Additional Features ---------- */
 
-    /* ---------- Console ---------- */
+    // Initialize Counter with better UX
+    window.SDPICounter = {
+        count: 0,
+        increment() {
+            this.count++;
+            showToast(`Count: ${this.count}`, 1500);
+            return this.count;
+        },
+        reset() {
+            this.count = 0;
+            showToast('Counter reset', 1500);
+            return this.count;
+        }
+    };
+
+    // Console welcome message
+    console.log(
+        '%c✨ SDPI Widget System v2.0 Loaded ✨',
+        'color:#2563eb;font-weight:bold;font-size:16px;padding:8px 12px;border-radius:8px;background:#f0f4ff;'
+    );
 
     console.log(
-        "%cSDPI Widget System Loaded",
-        "color:#2563eb;font-weight:bold;font-size:14px"
+        '%c📦 Available Commands:\n%c- SDPIToast(message, duration, type)\n- SDPICopy(text)\n- SDPICounter.increment()\n- SDPICounter.reset()',
+        'color:#1f2937;font-weight:bold;',
+        'color:#6b7280;font-size:12px;'
     );
 
 })();
