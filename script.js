@@ -341,7 +341,7 @@ function createStudentCard(student, index, total) {
     // যদি ফিল্ডটি "Board Roll" হয়, তাহলে তাকে লিঙ্কে পরিণত করো
     if (field === "Board Roll" || field === "Roll") {
     const rollNumber = value.toString().trim();
-    value = `<a href="https://btebresultszone.com/results/${rollNumber}?curriculumId=diploma_in_engineering" 
+    value = `<a href="https://bteb-results.ai.studio/?roll=${rollNumber}&curriculumId=diploma_in_engineering" 
     target="_blank" 
     style="color: #4a6fa5; text-decoration: none; font-weight: 600; border-bottom: 1px dashed #4a6fa5; padding: 2px 0;">
     <i class="fas fa-external-link-alt" style="margin-right: 5px;"></i>${rollNumber} <b>(view result)</b>
